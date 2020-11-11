@@ -1,4 +1,4 @@
-package com.example.mydaggertest
+package com.example.mydaggertest.burger
 
 class BeefPatty {
 

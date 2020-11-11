@@ -1,50 +1,60 @@
 package com.example.mydaggertest
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mydaggertest.burger.BuggerDaggerActivity
+import com.example.mydaggertest.burger.Burger
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.sample_intent_text.view.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var burger: Burger
 
+    fun getData() : ArrayList<String> {
+        val ar: ArrayList<String> = arrayListOf()
+        ar.add("BuggerSample")
+        return ar
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        getData().let {
+            main_rv.layoutManager = LinearLayoutManager(this)
+            main_rv.adapter = MainAdapter(it)
         }
+    }
+}
 
-        val component: BurgerComponent = DaggerBurgerComponent.builder()
-            .burgerModule(BurgerModule())
-            .build()
-
-        component.inject(this)
-
-        testText.text = burger.patty?.getPatty()
+class MainAdapter(private val ar: ArrayList<String>) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
+        return MainViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.sample_intent_text, parent, false))
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
+    override fun getItemCount(): Int {
+        return ar.size
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+        holder.bindView(ar[position])
+    }
+
+    inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bindView(text: String) {
+            itemView.sampleTxt.text = text
+            itemView.sampleTxt.setOnClickListener {
+                val intent = Intent(itemView.context, BuggerDaggerActivity::class.java)
+                startActivity(itemView.context, intent, null)
+            }
         }
     }
 }
