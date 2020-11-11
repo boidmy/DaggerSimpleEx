@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydaggertest.burger.BuggerDaggerActivity
 import com.example.mydaggertest.burger.Burger
+import com.example.mydaggertest.recyclerview.SampleRecyclerActivitiy
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.sample_intent_text.view.*
 import javax.inject.Inject
@@ -17,9 +18,10 @@ class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var burger: Burger
 
-    fun getData() : ArrayList<String> {
+    private fun getData() : ArrayList<String> {
         val ar: ArrayList<String> = arrayListOf()
         ar.add("BuggerSample")
+        ar.add("RecyclerSample")
         return ar
     }
 
@@ -27,10 +29,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getData().let {
-            main_rv.layoutManager = LinearLayoutManager(this)
-            main_rv.adapter = MainAdapter(it)
-        }
+        main_rv.layoutManager = LinearLayoutManager(this)
+        main_rv.adapter = MainAdapter(getData())
     }
 }
 
@@ -52,8 +52,17 @@ class MainAdapter(private val ar: ArrayList<String>) : RecyclerView.Adapter<Main
         fun bindView(text: String) {
             itemView.sampleTxt.text = text
             itemView.sampleTxt.setOnClickListener {
-                val intent = Intent(itemView.context, BuggerDaggerActivity::class.java)
-                startActivity(itemView.context, intent, null)
+                when (itemView.sampleTxt.text) {
+                    "BuggerSample" -> {
+                        val intent = Intent(itemView.context, BuggerDaggerActivity::class.java)
+                        startActivity(itemView.context, intent, null)
+                    }
+                    "RecyclerSample" -> {
+                        val intent = Intent(itemView.context, SampleRecyclerActivitiy::class.java)
+                        startActivity(itemView.context, intent, null)
+                    }
+                }
+
             }
         }
     }

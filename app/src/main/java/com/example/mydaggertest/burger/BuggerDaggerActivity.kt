@@ -17,7 +17,6 @@ class BuggerDaggerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_burger_sample)
 
-        DaggerBurgerComponent.create()
         val component: BurgerComponent = DaggerBurgerComponent.create()
         component.inject(this)
 
