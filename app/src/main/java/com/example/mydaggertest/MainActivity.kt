@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mydaggertest.burger.BuggerDaggerActivity
 import com.example.mydaggertest.burger.Burger
 import com.example.mydaggertest.recyclerview.SampleRecyclerActivitiy
+import com.example.mydaggertest.viewmodelsample.ViewModelActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.sample_intent_text.view.*
 import javax.inject.Inject
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         val ar: ArrayList<String> = arrayListOf()
         ar.add("BuggerSample")
         ar.add("RecyclerSample")
+        ar.add("ViewModelSample")
         return ar
     }
 
@@ -59,6 +61,10 @@ class MainAdapter(private val ar: ArrayList<String>) : RecyclerView.Adapter<Main
                     }
                     "RecyclerSample" -> {
                         val intent = Intent(itemView.context, SampleRecyclerActivitiy::class.java)
+                        startActivity(itemView.context, intent, null)
+                    }
+                    "ViewModelSample" -> {
+                        val intent = Intent(itemView.context, ViewModelActivity::class.java)
                         startActivity(itemView.context, intent, null)
                     }
                 }
