@@ -6,9 +6,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mydaggertest.R
 import com.example.mydaggertest.viewmodelsample.model.SampleViewModel
+import com.example.mydaggertest.viewmodelsample.module.ViewModelModule
 import kotlinx.android.synthetic.main.activity_viewmodel.*
+import javax.inject.Inject
 
 class ViewModelActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
