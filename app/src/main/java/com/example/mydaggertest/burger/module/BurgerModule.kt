@@ -5,6 +5,7 @@ import com.example.mydaggertest.burger.Burger
 import com.example.mydaggertest.burger.WheatBun
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 @Module
 class BurgerModule {
@@ -24,5 +25,17 @@ class BurgerModule {
     @Provides
     fun providePatty() : BeefPatty {
         return BeefPatty()
+    }
+    
+    @Provides
+    @Named("me")
+    fun provideMeName() : String { //아래와 같은 리턴 타입의 함수가 있으면 구분하기 위해 Named 어노테이션 설정
+        return "윤상용"
+    }
+    
+    @Provides
+    @Named("you")
+    fun provideYouName() : String {
+        return "고릴라"
     }
 }

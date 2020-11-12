@@ -7,11 +7,22 @@ import com.example.mydaggertest.R
 import com.example.mydaggertest.burger.component.DaggerBurgerComponent
 import kotlinx.android.synthetic.main.activity_burger_sample.*
 import javax.inject.Inject
+import javax.inject.Named
 
 class BuggerDaggerActivity : AppCompatActivity() {
 
+    @Inject lateinit var burger: Burger
+    @Inject @Named("me") lateinit var name: String
+    @Inject @Named("you") lateinit var uname: String
+
+    private lateinit var bun: WheatBun
+    private lateinit var patty: BeefPatty
+
     @Inject
-    lateinit var burger: Burger
+    fun material(bun: WheatBun, patty: BeefPatty) {
+        this.bun = bun
+        this.patty = patty
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,5 +32,9 @@ class BuggerDaggerActivity : AppCompatActivity() {
         component.inject(this)
 
         testText.text = burger.bun?.getBun()
+        testName.text = name
+        testuName.text = uname
+        meta1.text = bun.getBun()
+        meta2.text = patty.getPatty()
     }
 }
