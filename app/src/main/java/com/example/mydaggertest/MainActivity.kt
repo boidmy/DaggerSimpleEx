@@ -17,8 +17,6 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject lateinit var burger: Burger
-
     private fun getData() : ArrayList<String> {
         val ar: ArrayList<String> = arrayListOf()
         ar.add("BuggerSample")
@@ -30,6 +28,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        (application as AppApplication).getApplicationComponent()
+            .mainActivityComponentBuilder
+            .setModule(MainActivityModule())
+            .setActivity(this)
+            .build().inject(this)
 
         main_rv.layoutManager = LinearLayoutManager(this)
         main_rv.adapter = MainAdapter(getData())

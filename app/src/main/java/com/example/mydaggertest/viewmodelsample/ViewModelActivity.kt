@@ -20,7 +20,6 @@ class ViewModelActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_viewmodel)
 
-
         DaggerViewModelComponent.builder().viewModelModule(ViewModelModule(application))
             .build().inject(this)
 
