@@ -1,12 +1,14 @@
 package com.example.mydaggertest.viewmodelsample
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mydaggertest.AppApplication
 import com.example.mydaggertest.R
+import com.example.mydaggertest.test.UserRepository
 import com.example.mydaggertest.viewmodelsample.model.SampleViewModel
 import com.example.mydaggertest.viewmodelsample.module.ViewModelModule
 import kotlinx.android.synthetic.main.activity_viewmodel.*
@@ -15,6 +17,7 @@ import javax.inject.Inject
 class ViewModelActivity : AppCompatActivity() {
 
     @Inject lateinit var factory: ViewModelProvider.NewInstanceFactory
+    @Inject lateinit var repository: UserRepository
 
     private val viewModel by viewModels<SampleViewModel> { factory }
 
@@ -27,6 +30,9 @@ class ViewModelActivity : AppCompatActivity() {
             .setModule(ViewModelModule(application))
             .setActivity(this)
             .build().inject(this)
+
+        //application module과 상속관계이기 때문에 사용할수 있다
+        Log.d("TestInjectViewModelAct=", repository.hoho())
 
         viewModel.data.observe(this, Observer {
             viewmodelTxt.text = viewModel.data.value
