@@ -5,8 +5,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.mydaggertest.AppApplication
 import com.example.mydaggertest.R
-import com.example.mydaggertest.viewmodelsample.component.DaggerViewModelComponent
 import com.example.mydaggertest.viewmodelsample.model.SampleViewModel
 import com.example.mydaggertest.viewmodelsample.module.ViewModelModule
 import kotlinx.android.synthetic.main.activity_viewmodel.*
@@ -22,7 +22,10 @@ class ViewModelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_viewmodel)
 
-        DaggerViewModelComponent.builder().viewModelModule(ViewModelModule(application))
+        (application as AppApplication).getApplicationComponent()
+            .viewModelActivityComponentBuilder
+            .setModule(ViewModelModule(application))
+            .setActivity(this)
             .build().inject(this)
 
         viewModel.data.observe(this, Observer {

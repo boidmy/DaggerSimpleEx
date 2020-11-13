@@ -2,9 +2,10 @@ package com.example.mydaggertest.burger
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mydaggertest.AppApplication
 import com.example.mydaggertest.burger.component.BurgerComponent
 import com.example.mydaggertest.R
-import com.example.mydaggertest.burger.component.DaggerBurgerComponent
+import com.example.mydaggertest.burger.module.BurgerModule
 import kotlinx.android.synthetic.main.activity_burger_sample.*
 import javax.inject.Inject
 import javax.inject.Named
@@ -28,8 +29,11 @@ class BuggerDaggerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_burger_sample)
 
-        val component: BurgerComponent = DaggerBurgerComponent.create()
-        component.inject(this)
+        (application as AppApplication).getApplicationComponent()
+            .burgerActivityComponentBuilder
+            .setModule(BurgerModule())
+            .setActivity(this)
+            .build().inject(this)
 
         testText.text = burger.bun?.getBun()
         testName.text = name
