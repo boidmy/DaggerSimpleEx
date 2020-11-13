@@ -2,6 +2,7 @@ package com.example.mydaggertest
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
@@ -10,12 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mydaggertest.burger.BuggerDaggerActivity
 import com.example.mydaggertest.burger.Burger
 import com.example.mydaggertest.recyclerview.SampleRecyclerActivitiy
+import com.example.mydaggertest.test.UserRepository
 import com.example.mydaggertest.viewmodelsample.ViewModelActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.sample_intent_text.view.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    @Inject lateinit var userRepository: UserRepository
+    @Inject lateinit var viewModel: SampleViewModel
 
     private fun getData() : ArrayList<String> {
         val ar: ArrayList<String> = arrayListOf()
@@ -34,6 +38,10 @@ class MainActivity : AppCompatActivity() {
             .setModule(MainActivityModule())
             .setActivity(this)
             .build().inject(this)
+
+        //application에서 가지고있는 userRepository 상속받아 사용할수있다.
+        Log.d("TestInjectMainActivity=", userRepository.hoho())
+        viewModel.oh()
 
         main_rv.layoutManager = LinearLayoutManager(this)
         main_rv.adapter = MainAdapter(getData())
