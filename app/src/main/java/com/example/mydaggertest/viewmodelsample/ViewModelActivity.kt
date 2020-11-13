@@ -1,6 +1,7 @@
 package com.example.mydaggertest.viewmodelsample
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,15 +16,14 @@ class ViewModelActivity : AppCompatActivity() {
 
     @Inject lateinit var factory: ViewModelProvider.NewInstanceFactory
 
+    private val viewModel by viewModels<SampleViewModel> { factory }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_viewmodel)
 
         DaggerViewModelComponent.builder().viewModelModule(ViewModelModule(application))
             .build().inject(this)
-
-        val viewModel = ViewModelProvider(this, factory).get(SampleViewModel::class.java)
 
         viewModel.data.observe(this, Observer {
             viewmodelTxt.text = viewModel.data.value
