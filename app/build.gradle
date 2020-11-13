@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "scabbard.gradle"
 
 android {
     compileSdkVersion 30
@@ -31,7 +32,11 @@ android {
         jvmTarget = '1.8'
     }
 }
-
+scabbard {
+    enabled true
+    failOnError true // default false
+    fullBindingGraphValidation true // default false
+}
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -52,7 +57,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:2.27"
     kapt 'com.google.dagger:dagger-compiler:2.27'
     implementation 'com.google.dagger:dagger:2.27'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
 
     def lifecycle_version = "2.2.0"
     def arch_version = "2.1.0"
