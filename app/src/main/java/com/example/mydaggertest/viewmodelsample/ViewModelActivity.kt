@@ -18,6 +18,7 @@ class ViewModelActivity : AppCompatActivity() {
 
     @Inject lateinit var factory: ViewModelProvider.NewInstanceFactory
     @Inject lateinit var repository: UserRepository
+    @Inject lateinit var sampleContext: SampleContext
 
     private val viewModel by viewModels<SampleViewModel> { factory }
 
@@ -27,12 +28,12 @@ class ViewModelActivity : AppCompatActivity() {
 
         (application as AppApplication).getApplicationComponent()
             .viewModelActivityComponentBuilder
-            .setModule(ViewModelModule(application))
-            .setActivity(this)
-            .build().inject(this)
+            .create(this)
+            .inject(this)
 
         //application module과 상속관계이기 때문에 사용할수 있다
         Log.d("TestInjectViewModelAct=", repository.hoho())
+        sampleContext.ohmy()
 
         viewModel.data.observe(this, Observer {
             viewmodelTxt.text = viewModel.data.value

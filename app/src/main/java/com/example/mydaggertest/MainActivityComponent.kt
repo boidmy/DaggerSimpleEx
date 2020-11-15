@@ -10,12 +10,13 @@ interface MainActivityComponent {
 
     fun inject(mainActivity: MainActivity)
 
-    @Subcomponent.Builder
-    interface Builder {
-        fun setModule(module: MainActivityModule): Builder
+    @Subcomponent.Factory
+    interface Factory {
+        //fun setModule(module: MainActivityModule): Builder
 
-        @BindsInstance
-        fun setActivity(activity: MainActivity): Builder
-        fun build(): MainActivityComponent
+        /*@BindsInstance
+        fun setActivity(activity: MainActivity): Builder*/
+        //fun build(): MainActivityComponent
+        fun create(): MainActivityComponent
     }
 }

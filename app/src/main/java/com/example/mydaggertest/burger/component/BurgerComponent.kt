@@ -13,9 +13,6 @@ interface BurgerComponent {
     @Subcomponent.Builder
     interface Builder {
         fun setModule(module: BurgerModule): Builder
-
-        @BindsInstance
-        fun setActivity(activity: BuggerDaggerActivity): Builder
         fun build(): BurgerComponent
     }
 }

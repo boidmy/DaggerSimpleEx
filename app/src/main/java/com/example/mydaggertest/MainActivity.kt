@@ -35,9 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         (application as AppApplication).getApplicationComponent()
             .mainActivityComponentBuilder
-            .setModule(MainActivityModule())
-            .setActivity(this)
-            .build().inject(this)
+            .create()
+            .inject(this)
 
         //application에서 가지고있는 userRepository 상속받아 사용할수있다.
         Log.d("TestInjectMainActivity=", userRepository.hoho())

@@ -32,7 +32,6 @@ class BuggerDaggerActivity : AppCompatActivity() {
         (application as AppApplication).getApplicationComponent()
             .burgerActivityComponentBuilder
             .setModule(BurgerModule())
-            .setActivity(this)
             .build().inject(this)
 
         testText.text = burger.bun?.getBun()

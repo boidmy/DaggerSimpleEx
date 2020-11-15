@@ -11,8 +11,8 @@ import javax.inject.Singleton
 @Component(modules = [ApplicationModule::class])
 @Singleton
 interface ApplicationComponent {
-    val mainActivityComponentBuilder: MainActivityComponent.Builder
-    val viewModelActivityComponentBuilder: ViewModelComponent.Builder
+    val mainActivityComponentBuilder: MainActivityComponent.Factory
+    val viewModelActivityComponentBuilder: ViewModelComponent.Factory
     val burgerActivityComponentBuilder: BurgerComponent.Builder
     fun inject(application: AppApplication)
 
