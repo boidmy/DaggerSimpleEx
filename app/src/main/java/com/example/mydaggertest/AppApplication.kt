@@ -12,7 +12,7 @@ class AppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerApplicationComponent.factory().create(this, ApplicationModule())
+        appComponent = DaggerApplicationComponent.factory().create(this)
         appComponent.inject(this)
         Log.d("TestInject=", userRepository.hoho())
     }
