@@ -10,10 +10,10 @@ import javax.inject.Inject
 @Module
 class ViewModelModule {
 
-    @Provides
+    /*@Provides
     fun provideFactory() : ViewModelProvider.NewInstanceFactory {
         return ViewModelProvider.NewInstanceFactory()
-    }
+    }*/
 
     @Provides
     fun provideSampleContext(context: Context) : SampleContext {

@@ -17,7 +17,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideRepository() : UserRepository {
-        return UserRepository()
+    fun provideRepository(application: AppApplication) : UserRepository {
+        return UserRepository(application)
     }
 }

@@ -16,11 +16,12 @@ import javax.inject.Inject
 
 class ViewModelActivity : AppCompatActivity() {
 
-    @Inject lateinit var factory: ViewModelProvider.NewInstanceFactory
+   // @Inject lateinit var factory: ViewModelProvider.NewInstanceFactory
     @Inject lateinit var repository: UserRepository
     @Inject lateinit var sampleContext: SampleContext
-
-    private val viewModel by viewModels<SampleViewModel> { factory }
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var viewModel: SampleViewModel
+    //private val viewModel by viewModels<SampleViewModel> { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
