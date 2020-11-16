@@ -1,6 +1,7 @@
 package com.example.mydaggertest
 
 import com.example.mydaggertest.burger.component.BurgerComponent
+import com.example.mydaggertest.simple.SimpleComponent
 import com.example.mydaggertest.test.UserRepository
 import com.example.mydaggertest.viewmodelsample.component.ViewModelComponent
 import dagger.BindsInstance
@@ -14,6 +15,7 @@ interface ApplicationComponent {
     val mainActivityComponentBuilder: MainActivityComponent.Factory
     val viewModelActivityComponentBuilder: ViewModelComponent.Factory
     val burgerActivityComponentBuilder: BurgerComponent.Builder
+    val simPle: SimpleComponent.Factory
     fun inject(application: AppApplication)
 
     @Component.Factory

@@ -3,13 +3,15 @@ package com.example.mydaggertest.simple
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import dagger.Subcomponent
+import javax.inject.Singleton
 
-@Component(modules = [SimpleModule::class])
+@Subcomponent(modules = [SimpleModule::class])
 interface SimpleComponent {
 
     fun inject(simpleActivity: SimpleActivity)
 
-    @Component.Factory
+    @Subcomponent.Factory
     interface Factory {
         fun create(@BindsInstance context: Context) : SimpleComponent
     }

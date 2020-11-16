@@ -12,10 +12,4 @@ class SimpleModule {
     fun provideContext(context: Context) : SimpleClass {
         return SimpleClass(context)
     }
-
-    @Provides
-    fun provideRepository() : UserRepository {
-        return UserRepository()
-    }
-
 }
