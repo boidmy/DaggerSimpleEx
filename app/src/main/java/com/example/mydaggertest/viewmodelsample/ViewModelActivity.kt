@@ -16,12 +16,8 @@ import javax.inject.Inject
 
 class ViewModelActivity : AppCompatActivity() {
 
-   // @Inject lateinit var factory: ViewModelProvider.NewInstanceFactory
-    @Inject lateinit var repository: UserRepository
     @Inject lateinit var sampleContext: SampleContext
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var viewModel: SampleViewModel
-    //private val viewModel by viewModels<SampleViewModel> { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +29,7 @@ class ViewModelActivity : AppCompatActivity() {
             .inject(this)
 
         //application module과 상속관계이기 때문에 사용할수 있다
-        Log.d("TestInjectViewModelAct=", repository.hoho())
+        //Log.d("TestInjectViewModelAct=", repository.hoho())
         sampleContext.ohmy()
 
         viewModel.data.observe(this, Observer {
