@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydaggertest.burger.BuggerDaggerActivity
 import com.example.mydaggertest.burger.Burger
+import com.example.mydaggertest.burgercontribute.ContributeTestActivity
 import com.example.mydaggertest.recyclerview.SampleRecyclerActivitiy
 import com.example.mydaggertest.simple.SimpleActivity
 import com.example.mydaggertest.test.UserRepository
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         ar.add("RecyclerSample")
         ar.add("ViewModelSample")
         ar.add("Simple")
+        ar.add("ContributeTest")
         return ar
     }
 
@@ -82,6 +84,10 @@ class MainAdapter(private val ar: ArrayList<String>) : RecyclerView.Adapter<Main
                     }
                     "Simple" -> {
                         val intent = Intent(itemView.context, SimpleActivity::class.java)
+                        startActivity(itemView.context, intent, null)
+                    }
+                    "ContributeTest" -> {
+                        val intent = Intent(itemView.context, ContributeTestActivity::class.java)
                         startActivity(itemView.context, intent, null)
                     }
                 }
