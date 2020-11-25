@@ -22,7 +22,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject lateinit var userRepository: UserRepository
     @Inject lateinit var viewModel: SampleViewModel
-
+    @Inject lateinit var burger: Burger
     private fun getData() : ArrayList<String> {
         val ar: ArrayList<String> = arrayListOf()
         ar.add("BuggerSample")
@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
             .inject(this)
 
         //application에서 가지고있는 userRepository 상속받아 사용할수있다.
-        Log.d("TestInjectMainActivity=", userRepository.hoho())
+        Log.d("주소값을 MainActivity", burger.toString())
+
         viewModel.oh()
 
         main_rv.layoutManager = LinearLayoutManager(this)

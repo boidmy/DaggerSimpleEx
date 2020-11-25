@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydaggertest.R
+import com.example.mydaggertest.burger.Burger
 import com.example.mydaggertest.recyclerview.component.DaggerRecyclerComponent
 import kotlinx.android.synthetic.main.activity_recycler_sample.*
 import javax.inject.Inject
@@ -27,6 +28,7 @@ class SampleRecyclerActivitiy : AppCompatActivity() {
         sample_rv.layoutManager = LinearLayoutManager(this
             , LinearLayoutManager.VERTICAL, false)
         sample_rv.adapter = sampleAdapter
+
     }
 }
 

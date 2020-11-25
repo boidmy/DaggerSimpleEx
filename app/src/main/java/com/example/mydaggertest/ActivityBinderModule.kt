@@ -13,10 +13,10 @@ import dagger.multibindings.IntoMap
 abstract class ActivityBinderModule {
 
     /*@ContributesAndroidInjector
-    abstract fun contributeTestActivity(): ContributeTestActivity*/
+    abstract fun contributeTestActivity(): ContributeTestActivity*//*
     @Binds
     @IntoMap
     @ClassKey(ContributeTestActivity::class)
-    abstract fun bindYourFragmentInjectorFactory(factory: ContributeComponent.Factory?): AndroidInjector.Factory<*>?
+    abstract fun bindYourFragmentInjectorFactory(factory: ContributeComponent.Factory?): AndroidInjector.Factory<*>?*/
 
 }

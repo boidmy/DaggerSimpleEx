@@ -11,12 +11,13 @@ import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 
+@Singleton
 @Component(modules = [
     ApplicationModule::class,
-    BurgerModule::class,
-    ActivityBinderModule::class,
-    AndroidSupportInjectionModule::class])
-@Singleton
+    BurgerModule::class
+    //ActivityBinderModule::class,
+    //AndroidSupportInjectionModule::class
+])
 interface ApplicationComponent {
     val mainActivityComponentBuilder: MainActivityComponent.Factory
     val viewModelActivityComponentBuilder: ViewModelComponent.Factory

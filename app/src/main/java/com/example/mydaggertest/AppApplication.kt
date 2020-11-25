@@ -8,11 +8,10 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class AppApplication : Application(), HasAndroidInjector {
+class AppApplication : Application() {
 
     private lateinit var appComponent: ApplicationComponent
     @Inject lateinit var userRepository: UserRepository
-    @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
     override fun onCreate() {
         super.onCreate()
         appComponent = DaggerApplicationComponent.factory().create(this)
@@ -24,7 +23,4 @@ class AppApplication : Application(), HasAndroidInjector {
         return appComponent
     }
 
-    override fun androidInjector(): AndroidInjector<Any> {
-        return dispatchingAndroidInjector
-    }
 }

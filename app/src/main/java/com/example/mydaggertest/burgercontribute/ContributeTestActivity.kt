@@ -10,13 +10,10 @@ import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 
-class ContributeTestActivity : AppCompatActivity(), HasAndroidInjector {
+class ContributeTestActivity : AppCompatActivity() {
 
     //@Inject lateinit var burger: Burger
-    @Inject lateinit var androidInjector: AndroidInjector<Any>
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_contribute)
@@ -24,7 +21,4 @@ class ContributeTestActivity : AppCompatActivity(), HasAndroidInjector {
         //testText.text = burger.bun?.getBun()
     }
 
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
-    }
 }

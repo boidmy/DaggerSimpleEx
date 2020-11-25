@@ -6,6 +6,7 @@ import com.example.mydaggertest.burger.WheatBun
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 class BurgerModule {
