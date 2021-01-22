@@ -1,6 +1,7 @@
 package com.example.mydaggertest
 
 import com.example.mydaggertest.burger.component.BurgerComponent
+import com.example.mydaggertest.burger.module.BurgerModule
 import com.example.mydaggertest.simple.SimpleComponent
 import com.example.mydaggertest.test.UserRepository
 import com.example.mydaggertest.viewmodelsample.component.ViewModelComponent
@@ -9,9 +10,13 @@ import dagger.Component
 import javax.inject.Singleton
 
 
-@Component(modules = [
-    ApplicationModule::class])
 @Singleton
+@Component(modules = [
+    ApplicationModule::class,
+    BurgerModule::class
+    //ActivityBinderModule::class,
+    //AndroidSupportInjectionModule::class
+])
 interface ApplicationComponent {
     val mainActivityComponentBuilder: MainActivityComponent.Factory
     val viewModelActivityComponentBuilder: ViewModelComponent.Factory

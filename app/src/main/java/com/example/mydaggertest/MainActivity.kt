@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydaggertest.burger.BuggerDaggerActivity
 import com.example.mydaggertest.burger.Burger
+import com.example.mydaggertest.burgercontribute.ContributeTestActivity
 import com.example.mydaggertest.recyclerview.SampleRecyclerActivitiy
 import com.example.mydaggertest.simple.SimpleActivity
 import com.example.mydaggertest.test.UserRepository
@@ -21,13 +22,14 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject lateinit var userRepository: UserRepository
     @Inject lateinit var viewModel: SampleViewModel
-
+    @Inject lateinit var burger: Burger
     private fun getData() : ArrayList<String> {
         val ar: ArrayList<String> = arrayListOf()
         ar.add("BuggerSample")
         ar.add("RecyclerSample")
         ar.add("ViewModelSample")
         ar.add("Simple")
+        ar.add("ContributeTest")
         return ar
     }
 
@@ -41,7 +43,8 @@ class MainActivity : AppCompatActivity() {
             .inject(this)
 
         //application에서 가지고있는 userRepository 상속받아 사용할수있다.
-        Log.d("TestInjectMainActivity=", userRepository.hoho())
+        Log.d("주소값을 MainActivity", burger.toString())
+
         viewModel.oh()
 
         main_rv.layoutManager = LinearLayoutManager(this)
@@ -82,6 +85,10 @@ class MainAdapter(private val ar: ArrayList<String>) : RecyclerView.Adapter<Main
                     }
                     "Simple" -> {
                         val intent = Intent(itemView.context, SimpleActivity::class.java)
+                        startActivity(itemView.context, intent, null)
+                    }
+                    "ContributeTest" -> {
+                        val intent = Intent(itemView.context, ContributeTestActivity::class.java)
                         startActivity(itemView.context, intent, null)
                     }
                 }
