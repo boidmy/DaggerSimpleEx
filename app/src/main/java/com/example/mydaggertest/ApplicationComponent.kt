@@ -6,7 +6,6 @@ import com.example.mydaggertest.test.UserRepository
 import com.example.mydaggertest.viewmodelsample.component.ViewModelComponent
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 
